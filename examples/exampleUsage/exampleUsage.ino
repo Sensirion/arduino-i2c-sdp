@@ -40,8 +40,6 @@
 
 SensirionI2CSdp sdp;
 
-// TODO: DRIVER_GENERATOR Add missing commands and make printout more pretty
-
 void setup() {
 
     Serial.begin(115200);
@@ -59,6 +57,15 @@ void setup() {
     uint32_t productNumber;
     uint8_t serialNumber[8];
     uint8_t serialNumberSize = 8;
+
+    sdp.stopContinuousMeasurement();    
+
+    error = sdp.prepareProductIdentifier();
+    if (error) {
+        Serial.print("Error trying to execute prepareProductIdentifier(): ");
+        errorToString(error, errorMessage, 256);
+        Serial.println(errorMessage);
+    }
 
     error = sdp.readProductIdentifier(productNumber, serialNumber,
                                       serialNumberSize);
@@ -79,18 +86,24 @@ void setup() {
         Serial.println();
     }
 
-    // Start Measurement
+    error = sdp.startContinuousMeasurementWithDiffPressureTCompAndAveraging();
+
+    if (error) {
+        Serial.print("Error trying to execute startContinuousMeasurementWithDiffPressureTCompAndAveraging(): ");
+        errorToString(error, errorMessage, 256);
+        Serial.println(errorMessage);
+    }
+
+
 }
 
 void loop() {
     uint16_t error;
     char errorMessage[256];
 
-    // TODO: DRIVER_GENERATOR Adjust measurement delay
     delay(1000);
-    // TODO: DRIVER_GENERATOR Add scale and offset to printed measurement values
-    // Read Measurement
 
+    // Read Measurement
     int16_t differentialPressure;
     int16_t temperature;
     int16_t scalingFactor;
