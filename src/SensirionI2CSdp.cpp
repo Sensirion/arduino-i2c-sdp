@@ -163,9 +163,9 @@ uint16_t SensirionI2CSdp::triggerMeasurementWithDiffPressureTComp() {
     return error;
 }
 
-uint16_t SensirionI2CSdp::readMeasurement(int16_t& differentialPressure,
-                                          int16_t& temperature,
-                                          int16_t& scalingFactor) {
+uint16_t SensirionI2CSdp::readMeasurementRaw(int16_t& differentialPressureRaw,
+                                             int16_t& temperatureRaw,
+                                             int16_t& scalingFactor) {
     uint16_t error;
     uint8_t buffer[9];
 
@@ -178,10 +178,33 @@ uint16_t SensirionI2CSdp::readMeasurement(int16_t& differentialPressure,
         return error;
     }
 
-    error |= rxFrame.getInt16(differentialPressure);
-    error |= rxFrame.getInt16(temperature);
+    error |= rxFrame.getInt16(differentialPressureRaw);
+    error |= rxFrame.getInt16(temperatureRaw);
     error |= rxFrame.getInt16(scalingFactor);
     return error;
+}
+
+uint16_t SensirionI2CSdp::readMeasurement(float& differentialPressure,
+                                          float& temperature) {
+    int16_t error;
+    int16_t differentialPressureRaw;
+    int16_t temperatureRaw;
+    int16_t scalingFactor;
+
+    error = readMeasurementRaw(differentialPressureRaw, temperatureRaw,
+                               scalingFactor);
+    if (error) {
+        return error;
+    }
+
+    differentialPressure = (float)differentialPressureRaw / scalingFactor;
+    temperature = convert_temperature_raw_to_celsius(temperatureRaw);
+    return NoError;
+}
+
+float SensirionI2CSdp::convert_temperature_raw_to_celsius(
+    int16_t temperature_raw) {
+    return (float)temperature_raw / TEMPERATURE_CONVERSION_FACTOR;
 }
 
 uint16_t SensirionI2CSdp::enterSleepMode() {

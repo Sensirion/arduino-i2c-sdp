@@ -50,6 +50,7 @@
 #include <SensirionCore.h>
 
 class SensirionI2CSdp {
+    static const float TEMPERATURE_CONVERSION_FACTOR = 200;
 
   public:
     SensirionI2CSdp();
@@ -171,7 +172,7 @@ class SensirionI2CSdp {
     uint16_t triggerMeasurementWithDiffPressureTComp(void);
 
     /**
-     * readMeasurement() - After a start continuous measurement commands, the
+     * readMeasurementRaw() - After a start continuous measurement commands, the
      * measurement results can be read out at most every 0.5ms. After a
      * triggered measurement command, the results can be read out when the
      * sensor is finished with the measurement. The temperature and scale factor
@@ -194,8 +195,27 @@ class SensirionI2CSdp {
      *
      * @return 0 on success, an error code otherwise
      */
-    uint16_t readMeasurement(int16_t& differentialPressure,
-                             int16_t& temperature, int16_t& scalingFactor);
+    uint16_t readMeasurementRaw(int16_t& differentialPressureRaw,
+                                int16_t& temperatureRaw,
+                                int16_t& scalingFactor);
+
+    /**
+     * readMeasurement() - Wrapper for readMeasurementRaw() returning
+     * sensor values in physical units.
+     *
+     * @param differentialPressure calibrated differential pressure read from
+     * the sensor in Pascal
+     * @param temperature calibrated temperature read from the sensor in °C
+     * @return 0 on success, an error code otherwise
+     */
+    uint16_t readMeasurement(float& differentialPressure, float& temperature);
+
+    /**
+     * Convert raw temperature signal from sensor to degree celsius.
+     * @param temperature_raw raw value from sensor
+     * @return temperature in degree celsius
+     */
+    float convert_temperature_raw_to_celsius(int16_t temperature_raw);
 
     /**
      * enterSleepMode() - In sleep mode the sensor uses the minimum amount of
@@ -249,6 +269,7 @@ class SensirionI2CSdp {
     uint16_t readProductIdentifier(uint32_t& productNumber,
                                    uint8_t serialNumber[],
                                    uint8_t serialNumberSize);
+
 
   private:
     TwoWire* _i2cBus = nullptr;

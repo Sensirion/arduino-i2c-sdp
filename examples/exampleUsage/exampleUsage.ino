@@ -104,25 +104,23 @@ void loop() {
     delay(1000);
 
     // Read Measurement
-    int16_t differentialPressure;
-    int16_t temperature;
-    int16_t scalingFactor;
+    float differentialPressure;
+    float temperature;
 
     error =
-        sdp.readMeasurement(differentialPressure, temperature, scalingFactor);
+        sdp.readMeasurement(differentialPressure, temperature);
 
     if (error) {
         Serial.print("Error trying to execute readMeasurement(): ");
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
     } else {
-        Serial.print("DifferentialPressure:");
+        Serial.print("DifferentialPressure: ");
         Serial.print(differentialPressure);
-        Serial.print("\t");
-        Serial.print("Temperature:");
+        Serial.print(" Pa\t");
+        Serial.print("Temperature: ");
         Serial.print(temperature);
-        Serial.print("\t");
-        Serial.print("ScalingFactor:");
-        Serial.println(scalingFactor);
+        Serial.print(" °C");
+        Serial.println();
     }
 }
