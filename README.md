@@ -3,11 +3,11 @@
 This is the Sensirion SDP library for Arduino using the
 modules I2C interface.
 
-TODO: DRIVER_GENERATOR Add image of sensor / eval kit as images/sdp.jpg
-[<center><img src="images/sdp.jpg" width="300px"></center>](TODO: DRIVER_GENERATOR add url to the eval kit)
+<center><img src="images/sdp8xxx.jpg" width="250px"><img src="images/sdp3x.jpg" width="250px"></center>
 
-Click [here](TODO: DRIVER_GENERATOR Add url to the eval kit) to learn more about the SDP
-sensor and the SDP Evaluation Kit Board.
+Click [here](https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/test-your-sdp3x-differential-pressure-sensor-with-the-evaluation-kit-ek-p4/) to learn more about the SDP3x Sensor Evaluation Kit.
+
+Click [here](https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/evaluation-kit-for-sensors-of-the-sdp800-series/) to learn more about the SDP8xx series Sensor Evaluation Kit.
 
 
 # Installation
@@ -34,11 +34,10 @@ Note: Installation via the Arduino Library Manager is coming soon.
    The pinout of the SDP Sensor board can be found in the
    data sheet.
 
-	* **VDD** of the SEK-SDP to the **xV** of your Arduino board TODO: DRIVER_GENERATOR Add correct voltage
-	* **GND** of the SEK-SDP to the **GND** of your Arduino board
-	* **SCL** of the SEK-SDP to the **SCL** of your Arduino board
-	* **SDA** of the SEK-SDP to the **SDA** of your Arduino board
-	* **SEL** of the SEK-SDP to another **GND** of your Arduino board
+    * **VDD** of the SEK-SDP to the **3V3** of your Arduino board
+    * **GND** of the SEK-SDP to the **GND** of your Arduino board
+    * **SCL** of the SEK-SDP to the **SCL** of your Arduino board
+    * **SDA** of the SEK-SDP to the **SDA** of your Arduino board
 
 2. Open the `exampleUsage` sample project within the Arduino IDE
 
