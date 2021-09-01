@@ -270,10 +270,9 @@ class SensirionI2CSdp {
                                    uint8_t serialNumber[],
                                    uint8_t serialNumberSize);
 
-
   private:
     TwoWire* _i2cBus = nullptr;
-    uint8_t _i2cAddress;
+    uint8_t _i2cAddress = 0x0;
 };
 
 #endif /* SENSIRIONI2CSDP_H */

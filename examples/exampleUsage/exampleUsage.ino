@@ -58,7 +58,7 @@ void setup() {
     uint8_t serialNumber[8];
     uint8_t serialNumberSize = 8;
 
-    sdp.stopContinuousMeasurement();    
+    sdp.stopContinuousMeasurement();
 
     error = sdp.prepareProductIdentifier();
     if (error) {
@@ -89,12 +89,12 @@ void setup() {
     error = sdp.startContinuousMeasurementWithDiffPressureTCompAndAveraging();
 
     if (error) {
-        Serial.print("Error trying to execute startContinuousMeasurementWithDiffPressureTCompAndAveraging(): ");
+        Serial.print(
+            "Error trying to execute "
+            "startContinuousMeasurementWithDiffPressureTCompAndAveraging(): ");
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
     }
-
-
 }
 
 void loop() {
@@ -107,8 +107,7 @@ void loop() {
     float differentialPressure;
     float temperature;
 
-    error =
-        sdp.readMeasurement(differentialPressure, temperature);
+    error = sdp.readMeasurement(differentialPressure, temperature);
 
     if (error) {
         Serial.print("Error trying to execute readMeasurement(): ");
