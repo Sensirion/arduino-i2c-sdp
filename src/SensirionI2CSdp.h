@@ -39,6 +39,12 @@
 #ifndef SENSIRIONI2CSDP_H
 #define SENSIRIONI2CSDP_H
 
+#define SDP8XX_I2C_ADDRESS_0 0x25
+#define SDP8XX_I2C_ADDRESS_1 0x26
+#define SDP3X_I2C_ADDRESS_0 0x21
+#define SDP3X_I2C_ADDRESS_1 0x22
+#define SDP3X_I2C_ADDRESS_2 0x23
+
 #include <Wire.h>
 
 #include <SensirionCore.h>
@@ -53,7 +59,7 @@ class SensirionI2CSdp {
      * @param serial Arduino stream object to be communicated with.
      *
      */
-    void begin(TwoWire& i2cBus);
+    void begin(TwoWire& i2cBus, uint8_t i2cAddress);
 
     /**
      * startContinuousMeasurementWithMassFlowTCompAndAveraging() - This command
@@ -213,7 +219,8 @@ class SensirionI2CSdp {
      * exitSleepMode() - Exit sleep mode. See the data sheet for more detailed
      * information
      *
-     * @return error code, but you can ignore a NACK error as that command is not acknowledged
+     * @return error code, but you can ignore a NACK error as that command is
+     * not acknowledged
      */
     uint16_t exitSleepMode(void);
 
@@ -245,6 +252,7 @@ class SensirionI2CSdp {
 
   private:
     TwoWire* _i2cBus = nullptr;
+    uint8_t _i2cAddress;
 };
 
 #endif /* SENSIRIONI2CSDP_H */

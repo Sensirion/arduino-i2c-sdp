@@ -52,7 +52,7 @@ void setup() {
     uint16_t error;
     char errorMessage[256];
 
-    sdp.begin(Wire);
+    sdp.begin(Wire, SDP8XX_I2C_ADDRESS_0);
 
     uint32_t productNumber;
     uint8_t serialNumber[8];

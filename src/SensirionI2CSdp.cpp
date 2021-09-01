@@ -41,13 +41,12 @@
 #include "SensirionCore.h"
 #include <Wire.h>
 
-#define SDP_I2C_ADDRESS 0x25
-
 SensirionI2CSdp::SensirionI2CSdp() {
 }
 
-void SensirionI2CSdp::begin(TwoWire& i2cBus) {
+void SensirionI2CSdp::begin(TwoWire& i2cBus, uint8_t i2cAddress) {
     _i2cBus = &i2cBus;
+    _i2cAddress = i2cAddress;
 }
 
 uint16_t
@@ -61,8 +60,8 @@ SensirionI2CSdp::startContinuousMeasurementWithMassFlowTCompAndAveraging() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(10);
     return error;
 }
@@ -77,8 +76,8 @@ uint16_t SensirionI2CSdp::startContinuousMeasurementWithMassFlowTComp() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(10);
     return error;
 }
@@ -94,8 +93,8 @@ SensirionI2CSdp::startContinuousMeasurementWithDiffPressureTCompAndAveraging() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(10);
     return error;
 }
@@ -110,8 +109,8 @@ uint16_t SensirionI2CSdp::startContinuousMeasurementWithDiffPressureTComp() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(10);
     return error;
 }
@@ -126,8 +125,8 @@ uint16_t SensirionI2CSdp::stopContinuousMeasurement() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(0);
     return error;
 }
@@ -142,8 +141,8 @@ uint16_t SensirionI2CSdp::triggerMeasurementWithMassFlowTCompAndAveraging() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(45);
     return error;
 }
@@ -158,8 +157,8 @@ uint16_t SensirionI2CSdp::triggerMeasurementWithDiffPressureTComp() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(45);
     return error;
 }
@@ -173,7 +172,7 @@ uint16_t SensirionI2CSdp::readMeasurement(int16_t& differentialPressure,
     delay(1);
 
     SensirionI2CRxFrame rxFrame(buffer, 9);
-    error = SensirionI2CCommunication::receiveFrame(SDP_I2C_ADDRESS, 9, rxFrame,
+    error = SensirionI2CCommunication::receiveFrame(_i2cAddress, 9, rxFrame,
                                                     *_i2cBus);
     if (error) {
         return error;
@@ -195,8 +194,7 @@ uint16_t SensirionI2CSdp::enterSleepMode() {
         return error;
     }
 
-    return SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                *_i2cBus);
+    return SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
 }
 
 uint16_t SensirionI2CSdp::exitSleepMode() {
@@ -209,8 +207,8 @@ uint16_t SensirionI2CSdp::exitSleepMode() {
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     delay(2);
     return error;
 }
@@ -225,8 +223,7 @@ uint16_t SensirionI2CSdp::prepareProductIdentifier() {
         return error;
     }
 
-    return SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                *_i2cBus);
+    return SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
 }
 
 uint16_t SensirionI2CSdp::readProductIdentifier(uint32_t& productNumber,
@@ -241,8 +238,8 @@ uint16_t SensirionI2CSdp::readProductIdentifier(uint32_t& productNumber,
         return error;
     }
 
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
+    error =
+        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
     if (error) {
         return error;
     }
@@ -250,8 +247,8 @@ uint16_t SensirionI2CSdp::readProductIdentifier(uint32_t& productNumber,
     delay(1);
 
     SensirionI2CRxFrame rxFrame(buffer, 18);
-    error = SensirionI2CCommunication::receiveFrame(SDP_I2C_ADDRESS, 18,
-                                                    rxFrame, *_i2cBus);
+    error = SensirionI2CCommunication::receiveFrame(_i2cAddress, 18, rxFrame,
+                                                    *_i2cBus);
     if (error) {
         return error;
     }
