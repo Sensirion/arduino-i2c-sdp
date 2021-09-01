@@ -50,7 +50,6 @@
 #include <SensirionCore.h>
 
 class SensirionI2CSdp {
-    static const float TEMPERATURE_CONVERSION_FACTOR = 200;
 
   public:
     SensirionI2CSdp();

@@ -204,7 +204,7 @@ uint16_t SensirionI2CSdp::readMeasurement(float& differentialPressure,
 
 float SensirionI2CSdp::convert_temperature_raw_to_celsius(
     int16_t temperature_raw) {
-    return (float)temperature_raw / TEMPERATURE_CONVERSION_FACTOR;
+    return (float)temperature_raw / 200.0;
 }
 
 uint16_t SensirionI2CSdp::enterSleepMode() {
