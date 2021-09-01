@@ -171,8 +171,7 @@ class SensirionI2CSdp {
      * sensor is finished with the measurement. The temperature and scale factor
      * don’t need to be read out (every time). The read sequence can be aborted
      * by a NACK and a STOP condition. The scale factor is for differential
-     * pressure in Pascal. # TODO: DRIVER_GENERATOR Patch manually in Driver.
-     * Only requires read header to get measured data.
+     * pressure in Pascal.
      *
      * @param differentialPressure The digital calibrated differential pressure
      * signal read from the sensor is a signed integer number (two's complement
@@ -212,10 +211,9 @@ class SensirionI2CSdp {
 
     /**
      * exitSleepMode() - Exit sleep mode. See the data sheet for more detailed
-     * information # TODO: DRIVER_GENERATOR Patch manually in Driver. Only
-     * requires write header to wake up.
+     * information
      *
-     * @return 0 on success, an error code otherwise
+     * @return error code, but you can ignore a NACK error as that command is not acknowledged
      */
     uint16_t exitSleepMode(void);
 

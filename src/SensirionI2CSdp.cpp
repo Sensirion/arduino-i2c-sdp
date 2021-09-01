@@ -169,18 +169,6 @@ uint16_t SensirionI2CSdp::readMeasurement(int16_t& differentialPressure,
                                           int16_t& scalingFactor) {
     uint16_t error;
     uint8_t buffer[9];
-    SensirionI2CTxFrame txFrame(buffer, 9);
-
-    error = txFrame.addCommand(0x01);
-    if (error) {
-        return error;
-    }
-
-    error = SensirionI2CCommunication::sendFrame(SDP_I2C_ADDRESS, txFrame,
-                                                 *_i2cBus);
-    if (error) {
-        return error;
-    }
 
     delay(1);
 
@@ -216,7 +204,7 @@ uint16_t SensirionI2CSdp::exitSleepMode() {
     uint8_t buffer[2];
     SensirionI2CTxFrame txFrame(buffer, 2);
 
-    error = txFrame.addCommand(0x02);
+    error = txFrame.addCommand(0x00);
     if (error) {
         return error;
     }
