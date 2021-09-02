@@ -62,19 +62,18 @@ void setup() {
 
     error = sdp.readProductIdentifier(productNumber, serialNumber,
                                       serialNumberSize);
-
     if (error) {
         Serial.print("Error trying to execute readProductIdentifier(): ");
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
     } else {
-        Serial.print("ProductNumber:");
+        Serial.print("ProductNumber: ");
         Serial.print(productNumber);
         Serial.print("\t");
-        Serial.print("SerialNumber:");
+        Serial.print("SerialNumber: ");
+        Serial.print("0x");
         for (size_t i = 0; i < serialNumberSize; i++) {
-            Serial.print(serialNumber[i]);
-            Serial.print(", ");
+            Serial.print(serialNumber[i], HEX);
         }
         Serial.println();
     }
