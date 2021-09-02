@@ -127,7 +127,7 @@ uint16_t SensirionI2CSdp::stopContinuousMeasurement() {
 
     error =
         SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
-    delay(0);
+    delay(1);
     return error;
 }
 
