@@ -60,13 +60,6 @@ void setup() {
 
     sdp.stopContinuousMeasurement();
 
-    error = sdp.prepareProductIdentifier();
-    if (error) {
-        Serial.print("Error trying to execute prepareProductIdentifier(): ");
-        errorToString(error, errorMessage, 256);
-        Serial.println(errorMessage);
-    }
-
     error = sdp.readProductIdentifier(productNumber, serialNumber,
                                       serialNumberSize);
 

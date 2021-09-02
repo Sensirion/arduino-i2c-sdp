@@ -214,7 +214,7 @@ class SensirionI2CSdp {
      * @param temperature_raw raw value from sensor
      * @return temperature in degree celsius
      */
-    float convert_temperature_raw_to_celsius(int16_t temperature_raw);
+    float convertTemperatureRawToCelsius(int16_t temperature_raw);
 
     /**
      * enterSleepMode() - In sleep mode the sensor uses the minimum amount of
@@ -242,14 +242,6 @@ class SensirionI2CSdp {
      * not acknowledged
      */
     uint16_t exitSleepMode(void);
-
-    /**
-     * prepareProductIdentifier() - Prepare for reading the product identifier
-     * and sensor serial number.
-     *
-     * @return 0 on success, an error code otherwise
-     */
-    uint16_t prepareProductIdentifier(void);
 
     /**
      * readProductIdentifier() - Read the product identifier and serial number

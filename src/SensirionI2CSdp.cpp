@@ -198,12 +198,11 @@ uint16_t SensirionI2CSdp::readMeasurement(float& differentialPressure,
     }
 
     differentialPressure = (float)differentialPressureRaw / scalingFactor;
-    temperature = convert_temperature_raw_to_celsius(temperatureRaw);
+    temperature = convertTemperatureRawToCelsius(temperatureRaw);
     return NoError;
 }
 
-float SensirionI2CSdp::convert_temperature_raw_to_celsius(
-    int16_t temperature_raw) {
+float SensirionI2CSdp::convertTemperatureRawToCelsius(int16_t temperature_raw) {
     return (float)temperature_raw / 200.0;
 }
 
@@ -236,33 +235,30 @@ uint16_t SensirionI2CSdp::exitSleepMode() {
     return error;
 }
 
-uint16_t SensirionI2CSdp::prepareProductIdentifier() {
-    uint16_t error;
-    uint8_t buffer[2];
-    SensirionI2CTxFrame txFrame(buffer, 2);
-
-    error = txFrame.addCommand(0x367C);
-    if (error) {
-        return error;
-    }
-
-    return SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
-}
-
 uint16_t SensirionI2CSdp::readProductIdentifier(uint32_t& productNumber,
                                                 uint8_t serialNumber[],
                                                 uint8_t serialNumberSize) {
     uint16_t error;
     uint8_t buffer[18];
-    SensirionI2CTxFrame txFrame(buffer, 18);
 
-    error = txFrame.addCommand(0xE102);
+    SensirionI2CTxFrame txFramePrep(buffer, 18);
+    error = txFramePrep.addCommand(0x367C);
+    if (error) {
+        return error;
+    }
+    error = SensirionI2CCommunication::sendFrame(_i2cAddress, txFramePrep,
+                                                 *_i2cBus);
     if (error) {
         return error;
     }
 
-    error =
-        SensirionI2CCommunication::sendFrame(_i2cAddress, txFrame, *_i2cBus);
+    SensirionI2CTxFrame txFrameRead(buffer, 18);
+    error = txFrameRead.addCommand(0xE102);
+    if (error) {
+        return error;
+    }
+    error = SensirionI2CCommunication::sendFrame(_i2cAddress, txFrameRead,
+                                                 *_i2cBus);
     if (error) {
         return error;
     }
