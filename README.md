@@ -34,7 +34,7 @@ Note: Installation via the Arduino Library Manager is coming soon.
    The pinout of the SDP Sensor board can be found in the
    data sheet.
 
-    * **VDD** of the SEK-SDP to the **3V3** of your Arduino board
+    * **VDD** of the SEK-SDP to the **3V3** of your Arduino board  (5V is also possible)
     * **GND** of the SEK-SDP to the **GND** of your Arduino board
     * **SCL** of the SEK-SDP to the **SCL** of your Arduino board
     * **SDA** of the SEK-SDP to the **SDA** of your Arduino board
