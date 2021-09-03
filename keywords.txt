@@ -1,0 +1,35 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SensirionI2CSdp	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+startContinuousMeasurementWithMassFlowTCompAndAveraging	KEYWORD2
+startContinuousMeasurementWithMassFlowTComp	KEYWORD2
+startContinuousMeasurementWithDiffPressureTCompAndAveraging	KEYWORD2
+startContinuousMeasurementWithDiffPressureTComp	KEYWORD2
+stopContinuousMeasurement	KEYWORD2
+triggerMeasurementWithMassFlowTCompAndAveraging	KEYWORD2
+triggerMeasurementWithDiffPressureTComp	KEYWORD2
+readMeasurementRaw	KEYWORD2
+readMeasurement	KEYWORD2
+convertTemperatureRawToCelsius KEYWORD2
+enterSleepMode	KEYWORD2
+exitSleepMode	KEYWORD2
+readProductIdentifier	KEYWORD2
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+sdp	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
