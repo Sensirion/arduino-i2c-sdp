@@ -57,6 +57,8 @@ class SensirionI2CSdp {
      * begin() - Initializes the SensirionI2CSdp class.
      *
      * @param serial Arduino stream object to be communicated with.
+     * @param i2cAddress address of your sensor, depends on concrete SDP3x or
+     * SDP8xx device, see defines in this file for standard addresses
      *
      */
     void begin(TwoWire& i2cBus, uint8_t i2cAddress);
