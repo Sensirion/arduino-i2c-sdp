@@ -67,10 +67,10 @@ void setup() {
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
     } else {
-        Serial.print("ProductNumber: ");
+        Serial.print("ProductNumber:");
         Serial.print(productNumber);
         Serial.print("\t");
-        Serial.print("SerialNumber: ");
+        Serial.print("SerialNumber:");
         Serial.print("0x");
         for (size_t i = 0; i < serialNumberSize; i++) {
             Serial.print(serialNumber[i], HEX);
@@ -106,12 +106,11 @@ void loop() {
         errorToString(error, errorMessage, 256);
         Serial.println(errorMessage);
     } else {
-        Serial.print("DifferentialPressure: ");
+        Serial.print("DifferentialPressure[Pa]:");
         Serial.print(differentialPressure);
-        Serial.print(" Pa\t");
-        Serial.print("Temperature: ");
+        Serial.print("\t");
+        Serial.print("Temperature[°C]:");
         Serial.print(temperature);
-        Serial.print(" °C");
         Serial.println();
     }
 }
