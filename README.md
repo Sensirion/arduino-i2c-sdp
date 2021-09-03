@@ -3,7 +3,7 @@
 This is the Sensirion SDP library for Arduino using the
 modules I2C interface.
 
-<center><img src="images/SDP8xx.jpg" width="250px"><img src="images/SDP3x.jpg" width="250px"></center>
+<center><img src="images/SDP8xx.png" width="250px"><img src="images/SDP3x.png" width="250px"></center>
 
 Click [here](https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/test-your-sdp3x-differential-pressure-sensor-with-the-evaluation-kit-ek-p4/) to learn more about the SDP3x Sensor Evaluation Kit.
 
