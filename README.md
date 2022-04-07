@@ -5,9 +5,9 @@ modules I2C interface.
 
 <center><img src="images/SDP8xx.png" width="250px"><img src="images/SDP3x.png" width="250px"></center>
 
-Click [here](https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/test-your-sdp3x-differential-pressure-sensor-with-the-evaluation-kit-ek-p4/) to learn more about the SDP3x Sensor Evaluation Kit.
+Click [here](https://sensirion.com/products/catalog/EK-P4/) to learn more about the SDP3x Sensor Evaluation Kit.
 
-Click [here](https://www.sensirion.com/en/flow-sensors/differential-pressure-sensors/evaluation-kit-for-sensors-of-the-sdp800-series/) to learn more about the SDP8xx series Sensor Evaluation Kit.
+Click [here](https://sensirion.com/products/catalog/EK-P5/) to learn more about the SDP8xx series Sensor Evaluation Kit.
 
 
 # Installation
@@ -38,6 +38,8 @@ Note: Installation via the Arduino Library Manager is coming soon.
     * **GND** of the SEK-SDP to the **GND** of your Arduino board
     * **SCL** of the SEK-SDP to the **SCL** of your Arduino board
     * **SDA** of the SEK-SDP to the **SDA** of your Arduino board
+
+<center><img src="images/sdp8xx-pinout.png" width="800px"></center>
 
 2. Open the `exampleUsage` sample project within the Arduino IDE
 
