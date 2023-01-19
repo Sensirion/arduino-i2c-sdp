@@ -56,7 +56,7 @@ class SensirionI2CSdp {
     /**
      * begin() - Initializes the SensirionI2CSdp class.
      *
-     * @param serial Arduino stream object to be communicated with.
+     * @param i2cBus Arduino stream object to use for communication
      * @param i2cAddress address of your sensor, depends on concrete SDP3x or
      * SDP8xx device, see defines in this file for standard addresses
      *
